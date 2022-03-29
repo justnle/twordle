@@ -1,4 +1,4 @@
 # twordle
 
 Wordle Clone Project built with React, Tailwind, Vite..
-Also using Zustand!
+Also using Zustand! Using Vitest for testing
