@@ -26,8 +26,9 @@ describe(`Simple working test`, () => {
     });
 
     it(`shows succeeded game over state`, () => {
-        useStore.getState().newGame(Array(2).fill(`ganon`));
         const answer = useStore.getState().answer;
+
+        useStore.getState().newGame(Array(2).fill(`ganon`));
         useStore.getState().addGuess(answer);
         render(<App />);
 
