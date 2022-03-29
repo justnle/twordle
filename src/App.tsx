@@ -19,17 +19,17 @@ export default function App() {
         setGuess(newGuess);
     };
 
-    let rows = [...state.guesses];
+    let rows = [...state.rows];
 
     if (rows.length < GUESS_LENGTH) {
-        rows.push(guess);
+        rows.push({ guess });
     }
 
     const remainingGuesses = GUESS_LENGTH - rows.length;
 
     rows = rows.concat(Array(remainingGuesses).fill(``));
 
-    const gameStatus = state.guesses.length === GUESS_LENGTH;
+    const gameStatus = state.rows.length === GUESS_LENGTH;
 
     return (
         <div className="mx-auto w-96 relative">
@@ -48,8 +48,12 @@ export default function App() {
             </header>
 
             <main className="grid grid-rows-6 gap-4">
-                {rows.map((word, index) => (
-                    <WordRow key={`${index}-${word}`} letters={word} />
+                {rows.map(({ guess, result }, index) => (
+                    <WordRow
+                        key={`${index}-${guess}`}
+                        letters={guess}
+                        result={result}
+                    />
                 ))}
             </main>
 
