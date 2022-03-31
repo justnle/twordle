@@ -19,6 +19,12 @@ Testing done with:
 
 -   [Vitest](https://vitest.dev/) - Testing framework powered by Vite
 
+## Road Map
+
+-   Implement hard mode (subsequent guesses must include previously discovered correct letters)
+-   Implement dark mode
+-   Implement score history
+
 ## License
 
 This project is licensed under the MIT License - see the LICENSE.md file for details
