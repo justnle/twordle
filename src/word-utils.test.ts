@@ -4,7 +4,7 @@ import {
     getRandomWord,
     isValidWord,
     LetterState
-} from './word-utils';
+} from './utils/word-utils';
 
 describe(`getRandomWord`, () => {
     it(`random word`, () => {

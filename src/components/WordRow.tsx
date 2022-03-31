@@ -1,4 +1,4 @@
-import { LetterState, LETTER_LENGTH } from './word-utils';
+import { LetterState, LETTER_LENGTH } from '../utils/word-utils';
 interface WordRowProps {
     letters: string;
     result?: LetterState[];

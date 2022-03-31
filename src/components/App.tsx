@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 import Keyboard from './Keyboard';
-import { useStore, GUESS_LENGTH } from './store';
-import { isValidWord, LETTER_LENGTH } from './word-utils';
+import { useStore, GUESS_LENGTH } from '../utils/store';
+import { isValidWord, LETTER_LENGTH } from '../utils/word-utils';
 import WordRow from './WordRow';
 
 export default function App() {

@@ -1,5 +1,5 @@
-import { useStore } from './store';
-import { LetterState } from './word-utils';
+import { useStore } from '../utils/store';
+import { LetterState } from '../utils/word-utils';
 
 export default function Keyboard({
     onClick: onClickProp
