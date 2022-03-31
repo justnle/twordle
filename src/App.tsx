@@ -82,9 +82,7 @@ export default function App() {
                     Game Over!
                     <br></br>
                     {state.gameState === `fail`
-                        ? `The answer was ${(
-                              <b>${state.answer.toUpperCase()}</b>
-                          )}`
+                        ? `The answer was ${state.answer.toUpperCase()}`
                         : ``}
                     <button
                         className="block border rounded border-green-500 bg-green-500 p-2 mt-4 mx-auto shadow"
