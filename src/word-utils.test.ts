@@ -1,5 +1,10 @@
 import { describe, expect, it } from 'vitest';
-import { computeGuess, getRandomWord, LetterState } from './word-utils';
+import {
+    computeGuess,
+    getRandomWord,
+    isValidWord,
+    LetterState
+} from './word-utils';
 
 describe(`getRandomWord`, () => {
     it(`random word`, () => {
@@ -72,5 +77,15 @@ describe(`computeGuess`, () => {
             LetterState.Miss,
             LetterState.Miss
         ]);
+    });
+});
+
+describe(`isValidWord`, () => {
+    it(`works with a word in wordBank`, () => {
+        expect(isValidWord(`hello`)).toBe(true);
+    });
+
+    it(`works with a word not in wordBank`, () => {
+        expect(isValidWord(`asdfg`)).toBe(false);
     });
 });
