@@ -65,3 +65,7 @@ export function computeGuess(guess: string, answer: string): LetterState[] {
     });
     return result;
 }
+
+export function isValidWord(word: string) {
+    return wordBank.includes(word);
+}
