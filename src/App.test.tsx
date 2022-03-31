@@ -3,7 +3,7 @@ import App from './App';
 import { useStore } from './store';
 import { render, screen, userEvent } from './test/test-utils';
 
-describe(`Simple working test`, () => {
+describe(`App`, () => {
     it(`the title is visible`, () => {
         render(<App />);
         expect(screen.getByText(/Twordle/i)).toBeInTheDocument();
@@ -25,17 +25,17 @@ describe(`Simple working test`, () => {
         expect(document.querySelector(`main`)?.textContent).toEqual(`zelda`);
     });
 
-    it(`shows succeeded game over state`, () => {
+    it(`shows succeeded game state`, () => {
         const answer = useStore.getState().answer;
 
-        useStore.getState().newGame(Array(2).fill(`ganon`));
+        // useStore.getState().newGame(Array(2).fill(`ganon`));
         useStore.getState().addGuess(answer);
         render(<App />);
 
         expect(screen.getByText(`Game Over!`)).toBeInTheDocument();
     });
 
-    it(`shows failed game over state`, () => {
+    it(`shows failed game state`, () => {
         useStore.getState().newGame(Array(6).fill(`ganon`));
         render(<App />);
 
