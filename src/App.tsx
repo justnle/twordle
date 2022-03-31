@@ -73,6 +73,13 @@ export default function App() {
                     className="absolute bg-white left-0 right-0 top-1/4 p-6 w-3/4 mx-auto rounded border border-gray-500 text-center"
                 >
                     Game Over!
+                    <br></br>
+                    The answer was{' '}
+                    {state.gameState === `fail` ? (
+                        <b>{state.answer.toUpperCase()}</b>
+                    ) : (
+                        ``
+                    )}
                     <button
                         className="block border rounded border-green-500 bg-green-500 p-2 mt-4 mx-auto shadow"
                         onClick={() => {
