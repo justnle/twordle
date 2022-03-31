@@ -53,13 +53,7 @@ export default function App() {
                 <h1 className="text-4xl text-center">Twordle</h1>
             </header>
 
-            <Keyboard
-                onClick={(letter) => {
-                    addLetter(letter);
-                }}
-            />
-
-            <main className="grid grid-rows-6 gap-4">
+            <main className="grid grid-rows-6 gap-4 mb-4">
                 {rows.map(({ guess, result }, index) => (
                     <WordRow
                         key={`${index}-${guess}`}
@@ -74,6 +68,12 @@ export default function App() {
                 ))}
             </main>
 
+            <Keyboard
+                onClick={(letter) => {
+                    addLetter(letter);
+                }}
+            />
+
             {gameStatus && (
                 <div
                     role="modal"
@@ -81,12 +81,11 @@ export default function App() {
                 >
                     Game Over!
                     <br></br>
-                    The answer was{' '}
-                    {state.gameState === `fail` ? (
-                        <b>{state.answer.toUpperCase()}</b>
-                    ) : (
-                        ``
-                    )}
+                    {state.gameState === `fail`
+                        ? `The answer was ${(
+                              <b>${state.answer.toUpperCase()}</b>
+                          )}`
+                        : ``}
                     <button
                         className="block border rounded border-green-500 bg-green-500 p-2 mt-4 mx-auto shadow"
                         onClick={() => {
