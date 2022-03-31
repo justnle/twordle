@@ -1,16 +1,43 @@
 import { useEffect, useRef, useState } from 'react';
 import { useStore, GUESS_LENGTH } from './store';
-import { LETTER_LENGTH } from './word-utils';
+import { isValidWord, LETTER_LENGTH } from './word-utils';
 import WordRow from './WordRow';
 
 export default function App() {
     const state = useStore();
     const [guess, setGuess] = useGuess();
+    const [showInvalidGuess, setInvalidGuess] = useState(false);
+    const addGuess = useStore((s) => s.addGuess);
+    const previousGuess = usePrevious(guess);
+
+    useEffect(() => {
+        let id: any;
+
+        if (showInvalidGuess) {
+            id = setTimeout(() => setInvalidGuess(false), 12000);
+        }
+
+        return () => clearTimeout(id);
+    }, [showInvalidGuess]);
+
+    useEffect(() => {
+        if (guess.length === 0 && previousGuess?.length === LETTER_LENGTH) {
+            if (isValidWord(previousGuess)) {
+                addGuess(previousGuess);
+                setInvalidGuess(false);
+            } else {
+                setInvalidGuess(true);
+                setGuess(previousGuess);
+            }
+        }
+    }, [guess]);
 
     let rows = [...state.rows];
 
+    let currentRow = 0;
+
     if (rows.length < GUESS_LENGTH) {
-        rows.push({ guess });
+        currentRow = rows.push({ guess }) - 1;
     }
 
     const remainingGuesses = GUESS_LENGTH - rows.length;
@@ -31,6 +58,11 @@ export default function App() {
                         key={`${index}-${guess}`}
                         letters={guess}
                         result={result}
+                        className={
+                            showInvalidGuess && currentRow === index
+                                ? `animate-bounce`
+                                : ``
+                        }
                     />
                 ))}
             </main>
@@ -57,9 +89,7 @@ export default function App() {
 }
 
 function useGuess(): [string, React.Dispatch<React.SetStateAction<string>>] {
-    const addGuess = useStore((s) => s.addGuess);
     const [guess, setGuess] = useState(``);
-    const previousGuess = usePrevious(guess);
 
     const onKeyDown = (e: KeyboardEvent) => {
         let letter = e.key;
@@ -90,12 +120,6 @@ function useGuess(): [string, React.Dispatch<React.SetStateAction<string>>] {
             document.removeEventListener(`keydown`, onKeyDown);
         };
     }, []);
-
-    useEffect(() => {
-        if (guess.length === 0 && previousGuess?.length === LETTER_LENGTH) {
-            addGuess(previousGuess);
-        }
-    }, [guess]);
 
     return [guess, setGuess];
 }
