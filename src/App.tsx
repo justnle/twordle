@@ -79,8 +79,7 @@ export default function App() {
                     role="modal"
                     className="absolute bg-white left-0 right-0 top-1/4 p-6 w-3/4 mx-auto rounded border border-gray-500 text-center"
                 >
-                    Game Over!
-                    <br></br>
+                    <p>Game Over!</p>
                     {state.gameState === `fail`
                         ? `The answer was ${state.answer.toUpperCase()}`
                         : ``}
