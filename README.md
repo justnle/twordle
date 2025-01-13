@@ -6,6 +6,8 @@ to help narrow down the answer: the letter tile renders green if the letter is p
 the word and in the correct space, yellow if the letter is present in the word and in the
 incorrect space, and gray if the letter is not present in the word at all.
 
+I should improve the animations!
+
 ## Technologies
 
 This application was built with:
